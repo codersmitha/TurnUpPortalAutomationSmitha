@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OpenQA.Selenium.Support.UI;
+using MyProject1.Utilities;
 
 namespace MyProject1.Pages
 {
@@ -11,12 +13,18 @@ namespace MyProject1.Pages
     {
         public void CreateNewTimeRecord(IWebDriver driver)
         {
+            //WebDriverWait webDriverWait = new WebDriverWait(driver,TimeSpan.FromSeconds(10));
+            //webDriverWait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("/*[@id=\"container\"]/p/a")));
+            Wait.waitToBeClickable(driver, "Xpath" ,"//*[@id=\"container\"]/p/a",5);
+
             //Verify Create New Time record
             IWebElement createNewButton = driver.FindElement(By.XPath("//*[@id=\"container\"]/p/a"));
             createNewButton.Click();
+
             //Select Typcode Time from the dropdown list
             IWebElement mainTypeCodeDropDown = driver.FindElement(By.XPath("//*[@id=\"TimeMaterialEditForm\"]/div/div[1]/div/span[1]/span/span[1]"));
             mainTypeCodeDropDown.Click();
+
             //*[@id="TimeMaterialEditForm"]/div/div[1]/div/span[1]/span/span[1]
             IWebElement timeDropdown = driver.FindElement(By.XPath("//*[@id=\"TypeCode_listbox\"]/li[2]"));
             timeDropdown.Click();
@@ -25,7 +33,9 @@ namespace MyProject1.Pages
 
             IWebElement codeTextBox = driver.FindElement(By.Id("Code"));
             codeTextBox.SendKeys("Testing Programme1");
+
             //Enter Description in the description field
+            Wait.waitToBeVisible(driver, "Id", "Description", 7);
             IWebElement descriptionTextBox = driver.FindElement(By.Id("Description"));
             descriptionTextBox.SendKeys("Study Materials1");
 
