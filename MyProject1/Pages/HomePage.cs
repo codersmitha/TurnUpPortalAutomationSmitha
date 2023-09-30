@@ -19,7 +19,7 @@ namespace MyProject1.Pages
         }
             catch(Exception exception)
             { 
-            Assert.Fail("TurnUp Portall Homepage not dispalye", exception.Message);
+            Assert.Fail("TurnUp Portal Homepage not displayed", exception.Message);
             }
             IWebElement timeMaterialOption = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/ul/li[3]/a"));
             timeMaterialOption.Click();
